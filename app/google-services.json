@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "947627404936",
+    "firebase_url": "https://nguyenminh-f2037.firebaseio.com",
+    "project_id": "nguyenminh-f2037",
+    "storage_bucket": "nguyenminh-f2037.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947627404936:android:c3ebf22422ffe7ce",
+        "android_client_info": {
+          "package_name": "com.nguyenminh.learn_english"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947627404936-2k9u83vhkn6md2m16vom8hre9v6hpm1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo1urUirE04eWQO-An9mMLUxVeJ5U596I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
