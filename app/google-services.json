@@ -15,30 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "947627404936-mnuad589hhro20dqefbdkqr44ofj6hk3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.nguyenminh.learn_english",
-            "certificate_hash": "651416c4bb1af43b37a3485b218c0cac83ecca4e"
-          }
-        },
-        {
-          "client_id": "947627404936-ogaf5g68qp5j2sm62i9kgjaoj7hke2dq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.nguyenminh.learn_english",
-            "certificate_hash": "29ff720e6c78e8959892316c08ee84ec0310cae4"
-          }
-        },
-        {
-          "client_id": "947627404936-el33buo8tvm3ikdohdo7k2i36alctu81.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.nguyenminh.learn_english",
-            "certificate_hash": "7b6f3d118048e1395a51e70dee93ef2e5b72a4cd"
-          }
-        },
-        {
           "client_id": "947627404936-2k9u83vhkn6md2m16vom8hre9v6hpm1j.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -53,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "947627404936-2k9u83vhkn6md2m16vom8hre9v6hpm1j.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
