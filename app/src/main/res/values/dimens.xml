@@ -3,7 +3,7 @@
     <dimen name="height_home">50dp</dimen>
     <dimen name="height_image">35dp</dimen>
     <dimen name="height_image_home">35dp</dimen>
-    <dimen name="height_menu">56dp</dimen>
-    <dimen name="width_menu">56dp</dimen>
+    <dimen name="height_menu">60dp</dimen>
+    <dimen name="width_menu">40dp</dimen>
     <dimen name="width_Fragment_home">250dp</dimen>
 </resources>

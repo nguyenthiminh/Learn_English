@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english.menu;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,6 +34,7 @@ public class Fragment_home extends Fragment {
     }
     public void init(View view){
         item = new ArrayList<>();
+        item.add(new ItemHome(R.drawable.ic_star_brown_100_24dp,"star"));
         item.add(new ItemHome(R.drawable.ic_account_circle_black_24dp,"acount"));
         item.add(new ItemHome(R.drawable.ic_file_download_black_24dp,"download"));
         item.add(new ItemHome(R.drawable.ic_settings_black_24dp,"setting"));
@@ -42,7 +44,6 @@ public class Fragment_home extends Fragment {
         listView = (ListView)view.findViewById(R.id.lv_home);
         adapter = new ItemAdapter(item);
         listView.setAdapter(adapter);
-
-
     }
+
 }

@@ -2,17 +2,15 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/width_Fragment_home"
-
-
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
+    <View
         android:layout_width="@dimen/width_Fragment_home"
-        android:layout_height="150dp"
-        android:background="#2196F3"
+        android:layout_height="200dp"
+        android:background="#4CAF50"
         />
     <ListView
         android:layout_width="@dimen/width_Fragment_home"

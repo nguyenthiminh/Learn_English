@@ -22,7 +22,6 @@ public class ItemAdapter extends BaseAdapter {
     public ItemAdapter(List<ItemHome> item) {
         this.item = item;
     }
-
     @Override
     public int getCount() {
         if (item == null) {
@@ -42,7 +41,7 @@ public class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null){
 
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -54,6 +53,7 @@ public class ItemAdapter extends BaseAdapter {
         ItemHome itemHome =item.get(position);
         imvstar.setImageResource(itemHome.getId());
         tvstar.setText(itemHome.getName());
+
         return convertView;
     }
 }
