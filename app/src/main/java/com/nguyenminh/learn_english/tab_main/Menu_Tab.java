@@ -10,9 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.nguyenminh.learn_english.R;
+import com.nguyenminh.learn_english.menu.Dialog_Item_Home;
 import com.nguyenminh.learn_english.menu.Fragment_home;
 
 /**
@@ -32,6 +34,7 @@ public class Menu_Tab extends Fragment implements View.OnClickListener {
         initView(view);
         imvhome = (ImageView) view.findViewById(R.id.imv_home);
         imvhome.setOnClickListener(this);
+
         return view;
 
 
@@ -65,4 +68,6 @@ public class Menu_Tab extends Fragment implements View.OnClickListener {
         tr.addToBackStack(null);
         tr.commit();
     }
+
+
 }

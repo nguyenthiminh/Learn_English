@@ -17,10 +17,13 @@ import java.util.List;
  */
 
 public class ItemAdapter extends BaseAdapter {
+    private IMenu ind;
     private List<ItemHome> item;
 
-    public ItemAdapter(List<ItemHome> item) {
+    public ItemAdapter(List<ItemHome> item,IMenu ind)
+    {
         this.item = item;
+        this.ind=ind;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null){
 
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -52,8 +55,19 @@ public class ItemAdapter extends BaseAdapter {
         ImageView imvstar = (ImageView)convertView.findViewById(R.id.imv_item);
         TextView tvstar=(TextView)convertView.findViewById(R.id.tv_text);
         ItemHome itemHome =item.get(position);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ind.open(position);
+            }
+        });
+
         imvstar.setImageResource(itemHome.getId());
         tvstar.setText(itemHome.getName());
         return convertView;
+    }
+
+    public interface IMenu{
+        void open(int position);
     }
 }
