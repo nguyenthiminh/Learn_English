@@ -25,7 +25,6 @@ public class ItemAdapter extends BaseAdapter {
         this.item = item;
         this.ind=ind;
     }
-
     @Override
     public int getCount() {
         if (item == null) {
@@ -64,6 +63,7 @@ public class ItemAdapter extends BaseAdapter {
 
         imvstar.setImageResource(itemHome.getId());
         tvstar.setText(itemHome.getName());
+
         return convertView;
     }
 
