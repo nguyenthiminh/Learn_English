@@ -9,37 +9,8 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:background="#2196F3"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_home"
-        android:orientation="horizontal"
-        android:weightSum="8">
-        <ImageView
-            android:id="@+id/imv_home"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/height_image_home"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/ic_menu"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/height_home"
-            android:layout_weight="5"
-            android:text="Tiếng anh giao tiếp"
-            android:textSize="20sp"
-            android:gravity="center_vertical"
-            android:paddingLeft="18dp"
-            android:textColor="#ffffff"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/height_image"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/grade"/>
-    </LinearLayout>
-
     <android.support.design.widget.TabLayout
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:id="@+id/tab"
         android:layout_height="wrap_content"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Account"
+        android:id="@+id/account"
+        android:icon="@drawable/ic_account_circle_black_24dp"/>
+    <item
+        android:title="Download"
+        android:id="@+id/download"
+        android:icon="@drawable/ic_file_download_black_24dp"/>
+    <item
+        android:title="Setting"
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_black_24dp"/>
+    <item
+        android:title="Favourite"
+        android:id="@+id/favourite"
+        android:icon="@drawable/ic_favorite_black_24dp"/>
+    <item
+        android:title="Share"
+        android:id="@+id/share"
+        android:icon="@drawable/ic_info_black_24dp"/>
+</menu>
