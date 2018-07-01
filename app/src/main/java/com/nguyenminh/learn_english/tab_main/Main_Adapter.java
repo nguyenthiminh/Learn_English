@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english.tab_main;
 
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +17,7 @@ import com.nguyenminh.learn_english.fragment.Fragment_Video;
  */
 
 public class Main_Adapter extends FragmentPagerAdapter {
+
     public Main_Adapter(FragmentManager fm) {
         super(fm);
     }
@@ -26,7 +28,7 @@ public class Main_Adapter extends FragmentPagerAdapter {
             return new Fragment_BaiHoc();
         } else if (position == 1) {
             return new Fragment_Video();
-        } else if (position == 2) {
+        } else  if (position == 2) {
             return new Fragment_CumTu();
         } else if (position == 3) {
             return new Fragment_TuCoBan();
