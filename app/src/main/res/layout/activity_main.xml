@@ -24,8 +24,7 @@
         app:headerLayout="@layout/hearder_home"
         android:theme="@style/Theme.AppCompat.Light"
         app:itemTextColor="#009688"
-        app:itemIconTint="#009688"
-        >
+        app:itemIconTint="#009688">
 
     </android.support.design.widget.NavigationView>
 
