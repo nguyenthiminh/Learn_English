@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english;
 
+import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,14 +15,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
-import java.io.IOException;
+import org.json.JSONObject;
 
-//import fr.arnaudguyon.xmltojsonlib.XmlToJson;
+import java.io.IOException;
+import java.io.InputStream;
+
+import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fb=FirebaseStorage.getInstance();
+        fb=FirebaseStorage.getInstance("gs://nguyenminh-f2037.appspot.com");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
