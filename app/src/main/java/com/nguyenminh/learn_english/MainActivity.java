@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english;
 
+import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -11,15 +12,25 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.InputStream;
+
+import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
 //import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
@@ -30,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBar actionBar;
     private NavigationView navigationView;
     private FirebaseStorage fb;
+    private TextView tvText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +89,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        List
 //    }
     public void convertXMLTOJSON() throws IOException {
+        AssetManager assetManager = getAssets();
+        InputStream inputStream = assetManager.open("grammar.xml");
+        XmlToJson xmlToJson = new XmlToJson.Builder(inputStream, null).build();
+        inputStream.close();
+        JSONObject jsonObject = xmlToJson.toJson();
+        if (jsonObject != null) {
+            Toast.makeText(this, "thành công", Toast.LENGTH_SHORT).show();
+            try {
+                JSONArray jsonArray = jsonObject.getJSONObject("grammars").getJSONArray("grammar");
+                int le = jsonArray.length();
+                for (int i = 0; i < le; i++) {
+                    JSONObject o = (JSONObject) jsonArray.get(i);
+                    String content = o.getString("content");
+                    int id = o.getInt("id");
+                    String title = o.getString("title");
+                    tvText.setText(Html.fromHtml(
+                            content
+                    ));
+                    break;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            jsonObject.toString();
+//            Grammars grammars = new Gson().fromJson(jsonObject.toString(), Grammars.class);
+//            String content = grammars.getGrammar().get(0).getContent();
+//            tvText.setText(Html.fromHtml(
+//                    content
+//            ));
+
+        }
 //        AssetManager assetManager = getAssets();
 //        InputStream inputStream = assetManager.open("grammar.xml");
 //        XmlToJson xmlToJson = new XmlToJson.Builder(inputStream, null).build();
