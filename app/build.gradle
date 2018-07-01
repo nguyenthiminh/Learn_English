@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -31,9 +31,10 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.google.firebase:firebase-crash:16.0.1'
-    implementation 'com.google.firebase:firebase-auth:16.0.2'
+//    implementation 'com.google.firebase:firebase-database:16.0.1'
+//    implementation 'com.google.firebase:firebase-crash:16.0.1'
+//    implementation 'com.google.firebase:firebase-auth:16.0.2'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
 
 //    add for android
     implementation 'com.android.support:design:27.1.1'
@@ -42,3 +43,5 @@ dependencies {
     implementation 'com.github.smart-fun:XmlToJson:1.4.4'
     implementation 'me.relex:circleindicator:1.2.2@aar'
 }
+
+apply plugin: 'com.google.gms.google-services'
