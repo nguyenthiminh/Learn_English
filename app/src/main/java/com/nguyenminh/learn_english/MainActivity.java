@@ -1,6 +1,10 @@
 package com.nguyenminh.learn_english;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +28,7 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
+import android.support.v7.app.AlertDialog;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
 import org.json.JSONArray;
@@ -47,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBar actionBar;
     private NavigationView navigationView;
     private FirebaseStorage firebaseStorage;
-
+    private Dialog dialog;
     private StorageReference storageReference;
 
 
@@ -154,23 +159,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.download:
-
+                Intent ggplay = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store"));
+                startActivity(ggplay);
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
             case R.id.setting:
-
+                showAlterdialogSetting();
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.favourite:
-
+                Intent fovourite = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store"));
+                startActivity(fovourite);
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
-            case R.id.share:
-
+            case R .id.share:
+                showDialogShare();
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
@@ -246,4 +253,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //        thread.start();
 //    }
+    private void showAlterdialogSetting(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("abcdef");
+        builder.setMessage("ban co muon...");
+        builder.setCancelable(false);
+        builder.setPositiveButton("hihi", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton("ahihi minh meo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    private void showAlterdialogInfor(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("abcdef");
+        builder.setMessage("ban co muon...");
+        builder.setCancelable(false);
+        builder.setPositiveButton("hihi", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton("ahihi minh meo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    public void showDialogShare() {
+        dialog = new Dialog(MainActivity.this);
+        dialog.setTitle("Share with");
+        dialog.setContentView(R.layout.dialog_share);
+        dialog.show();
+    }
+
 }
