@@ -12,23 +12,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
@@ -40,20 +46,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private ActionBar actionBar;
     private NavigationView navigationView;
-    private FirebaseStorage fb;
-    private TextView tvText;
+    private FirebaseStorage firebaseStorage;
+
+    private StorageReference storageReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fb=FirebaseStorage.getInstance();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawable_layout);
         navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
@@ -68,14 +76,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        try {
-            convertXMLTOJSON();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            convertXMLTOJSON("grammar");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        readFileXml("https://firebasestorage.googleapis.com/v0/b/nguyenminh-f2037.appspot.com/o/grammar.xml?alt=media&token=381828bb-8497-489f-a2de-9e64c08fac88");
         openMenu_Main();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_actionbar, menu);
+        return true;
+    }
     public void openMenu_Main() {
         Menu_Tab music_tap = new Menu_Tab();
         FragmentManager m = getSupportFragmentManager();
@@ -85,56 +99,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tr.commit();
     }
 
-    //    public List<File> getFileAsset(){
-//        List
-//    }
-    public void convertXMLTOJSON() throws IOException {
+    public List convertXMLTOJSON(String link) throws IOException {
         AssetManager assetManager = getAssets();
-        InputStream inputStream = assetManager.open("grammar.xml");
+        InputStream inputStream = assetManager.open(link + ".xml");
         XmlToJson xmlToJson = new XmlToJson.Builder(inputStream, null).build();
+
         inputStream.close();
         JSONObject jsonObject = xmlToJson.toJson();
         if (jsonObject != null) {
-            Toast.makeText(this, "thành công", Toast.LENGTH_SHORT).show();
-            try {
-                JSONArray jsonArray = jsonObject.getJSONObject("grammars").getJSONArray("grammar");
-                int le = jsonArray.length();
-                for (int i = 0; i < le; i++) {
-                    JSONObject o = (JSONObject) jsonArray.get(i);
-                    String content = o.getString("content");
-                    int id = o.getInt("id");
-                    String title = o.getString("title");
-                    tvText.setText(Html.fromHtml(
-                            content
-                    ));
+            switch (link) {
+                case "grammar_title":
+                    List<Grammar> data = new ArrayList<>();
+                    Grammar gram;
+                    try {
+
+                        JSONArray jsonArray = jsonObject.getJSONObject("grammars").getJSONArray("grammar");
+                        int le = jsonArray.length();
+                        for (int i = 0; i < le; i++) {
+                            JSONObject o = (JSONObject) jsonArray.get(i);
+                            String localtitle = o.getString("local_title");
+                            int id = o.getInt("id");
+                            String entitle = o.getString("en_title");
+//                        tvText.setText(Html.fromHtml(
+//                                title));
+                            gram= new Grammar(id, localtitle,entitle);
+
+                            data.add(gram);
+
+                        }
+
+                        return data;
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     break;
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                case "grammar":
+                    break;
+                default:
+                    break;
+
             }
-            jsonObject.toString();
-//            Grammars grammars = new Gson().fromJson(jsonObject.toString(), Grammars.class);
-//            String content = grammars.getGrammar().get(0).getContent();
-//            tvText.setText(Html.fromHtml(
-//                    content
-//            ));
-
         }
-//        AssetManager assetManager = getAssets();
-//        InputStream inputStream = assetManager.open("grammar.xml");
-//        XmlToJson xmlToJson = new XmlToJson.Builder(inputStream, null).build();
-//        inputStream.close();
-//        JSONObject jsonObject = xmlToJson.toJson();
-//        if(jsonObject!=null){
-//            Toast.makeText(this,"thành công",Toast.LENGTH_SHORT).show();
-//        }
-//
-//
-//        database=FirebaseDatabase.getInstance();
-//        DatabaseReference myRef =database.getReferenceFromUrl("https://nguyenminh-f2037.firebaseio.com/");
-//
-//        myRef.setValue(jsonObject);
-
+        return null;
     }
 
     @Override
@@ -172,4 +180,70 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
+    public void readFileXml(final String link) {
+
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReferenceFromUrl("gs://nguyenminh-f2037.appspot.com").child("" + link);
+
+        try {
+            final File localFile = File.createTempFile("text", ".xml");
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Log.d("suss", "vbvhg");
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d("fail", "fhhjjj");
+                }
+            });
+        } catch (IOException e) {
+        }
+//
+//                    XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+//                    XmlPullParser xmlPullParser = factory.newPullParser();
+//
+//                    xmlPullParser.setInput(inputStream, null);
+//
+//                    int events = xmlPullParser.getEventType();
+//
+//                    while (events != XmlPullParser.END_DOCUMENT) {
+//
+//                        switch (events) {
+//                            case XmlPullParser.START_TAG:
+//                                tvText.setText(""+xmlPullParser.getName());
+//                                ;
+//                                break;
+//
+//                            case XmlPullParser.TEXT:
+//                                ;
+//                                break;
+//                            case XmlPullParser.END_TAG:
+//
+//                                ;
+//                                break;
+//                        }
+//
+//                    }
+//
+//
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (XmlPullParserException e) {
+//                    e.printStackTrace();
+//                }
+    }
+//        });
+
+//        thread.start();
+//    }
 }
