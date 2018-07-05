@@ -1,15 +1,15 @@
-package com.nguyenminh.learn_english.modul;
+package com.nguyenminh.learn_english.modul.grammar;
 
 /**
  * Created by hieph on 7/1/2018.
  */
 
-public class GrammarTitles {
+public class Grammar {
     private int id;
     private String localTitle;
     private String enTitle;
 
-    public GrammarTitles(int id, String localTitle, String enTitle) {
+    public Grammar(int id, String localTitle, String enTitle) {
         this.id = id;
         this.localTitle = localTitle;
         this.enTitle = enTitle;
