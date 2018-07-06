@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nguyenminh.learn_english.modul.grammar.Fragment_ItemGrammar;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
@@ -241,6 +242,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                } catch (XmlPullParserException e) {
 //                    e.printStackTrace();
 //                }
+    }
+
+    public void openItemGrammar(int id) {
+
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment_ItemGrammar fragment = new Fragment_ItemGrammar();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", id);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent, fragment,
+                Fragment_ItemGrammar.class.getName());
+        transaction.addToBackStack(null);
+        actionBar.setTitle(Fragment_ItemGrammar.class.getName()+"");
+        transaction.commit();
     }
 //        });
 

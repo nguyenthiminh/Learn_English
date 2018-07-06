@@ -1,20 +1,19 @@
-package com.nguyenminh.learn_english.fragment;
+package com.nguyenminh.learn_english.modul.grammar;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.MainActivity;
 import com.nguyenminh.learn_english.R;
-import com.nguyenminh.learn_english.modul.grammar.Grammar;
-import com.nguyenminh.learn_english.modul.grammar.GrammarAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,51 +27,53 @@ import java.util.List;
 import fr.arnaudguyon.xmltojsonlib.XmlToJson;
 
 /**
- * Created by Big Boss on 06/26/2018.
+ * Created by Big Boss on 07/06/2018.
  */
 
-public class Fragment_NguPhapCoBan extends Fragment implements ISClick {
-    private List<Grammar> grammars;
-    private GrammarAdapter adapter;
-    private ListView lv;
-
+public class Fragment_ItemGrammar extends Fragment {
+    private List<ItemGrammar>itemGrammars;
+    private TextView tvItemGrammar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        View view=inflater.inflate(R.layout.grammar,container,false);
+        tvItemGrammar=(TextView)view.findViewById(R.id.tv_itemgrammar);
+        Bundle bundle =getArguments();
+        int id=bundle.getInt("ID");
         try {
-            init(view);
+            init(id);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return view;
+        
     }
 
-    public void init(View view) throws IOException {
-        grammars=new ArrayList<>();
+    private void init(int idc) throws IOException {
+        itemGrammars=new ArrayList<>();
         AssetManager assetManager = ((MainActivity)getActivity()).getAssets();
-        InputStream inputStream = assetManager.open("grammar_titles.xml");
+        InputStream inputStream = assetManager.open("grammar.xml");
         XmlToJson xmlToJson = new XmlToJson.Builder(inputStream, null).build();
 
         inputStream.close();
         JSONObject jsonObject = xmlToJson.toJson();
         if (jsonObject != null) {
 
-            Grammar gram;
+            ItemGrammar itemGram;
             try {
 
                 JSONArray jsonArray = jsonObject.getJSONObject("grammars").getJSONArray("grammar");
                 int le = jsonArray.length();
                 for (int i = 0; i < le; i++) {
                     JSONObject o = (JSONObject) jsonArray.get(i);
-                    String localtitle = o.getString("local_title");
+                    String title = o.getString("title");
                     int id = o.getInt("id");
-                    String entitle = o.getString("en_title");
+                    String content = o.getString("content");
 //                        tvText.setText(Html.fromHtml(
 //                                title));
-                    gram = new Grammar(id, localtitle, entitle);
+                    itemGram = new ItemGrammar(id, title, content);
 
-                    grammars.add(gram);
+                    itemGrammars.add(itemGram);
 
                 }
 
@@ -81,16 +82,11 @@ public class Fragment_NguPhapCoBan extends Fragment implements ISClick {
                 e.printStackTrace();
             }
 
-
-            lv = (ListView) view.findViewById(R.id.lv_grammar);
-            adapter = new GrammarAdapter(grammars,this);
-            lv.setAdapter(adapter);
-
+            for (int i=0;i<itemGrammars.size();i++){
+                if(idc==itemGrammars.get(i).getId()){
+                    tvItemGrammar.setText(Html.fromHtml(itemGrammars.get(i).getContent()));
+                }
         }
     }
-
-    @Override
-    public void isClick(int position) {
-        ((MainActivity)getActivity()).openItemGrammar(grammars.get(position).getId());
     }
 }
