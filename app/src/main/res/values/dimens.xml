@@ -6,4 +6,8 @@
     <dimen name="height_menu">60dp</dimen>
     <dimen name="width_menu">40dp</dimen>
     <dimen name="width_Fragment_home">250dp</dimen>
+    <dimen name="dialog_height">56dp</dimen>
+    <dimen name="dialog_width">56dp</dimen>
+    <dimen name="dialog_buttonwidth">100dp</dimen>
+    <dimen name="dialog_buttonheight">30dp</dimen>
 </resources>
