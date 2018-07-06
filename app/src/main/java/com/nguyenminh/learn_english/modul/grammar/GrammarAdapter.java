@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.R;
 
 import java.util.List;
@@ -14,10 +15,12 @@ import java.util.List;
  * Created by Big Boss on 07/04/2018.
  */
 
-public class GrammarAdapter extends BaseAdapter {
+public class GrammarAdapter extends BaseAdapter{
+    private ISClick isClick;
 
-    public GrammarAdapter(List<Grammar> grammars) {
+    public GrammarAdapter(List<Grammar> grammars,ISClick isClick) {
         this.grammars = grammars;
+        this.isClick=isClick;
     }
 
     List<Grammar>grammars;
@@ -40,7 +43,7 @@ public class GrammarAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
         if(view==null){
             LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
             view=inflater.inflate(R.layout.item_one,viewGroup,false);
@@ -54,6 +57,13 @@ public class GrammarAdapter extends BaseAdapter {
         tvid.setText(grammar.getId()+"");
         tvlocaltitle.setText(grammar.getLocalTitle());
         tventitle.setText(grammar.getEnTitle());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isClick.isClick(position);
+            }
+        });
         return view;
     }
 }

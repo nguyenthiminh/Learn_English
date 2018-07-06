@@ -1,5 +1,7 @@
 package com.nguyenminh.learn_english.modul;
 
+import com.nguyenminh.learn_english.modul.grammar.ItemGrammar;
+
 import java.util.List;
 
 /**
@@ -8,11 +10,11 @@ import java.util.List;
 
 public class Lessons {
     private int id;
-    private List<ItemLesson>itemLessons;
+    private List<ItemGrammar> itemGrammars;
 
-    public Lessons(int id, List<ItemLesson> itemLessons) {
+    public Lessons(int id, List<ItemGrammar> itemGrammars) {
         this.id = id;
-        this.itemLessons = itemLessons;
+        this.itemGrammars = itemGrammars;
     }
 
     public int getId() {
@@ -23,11 +25,11 @@ public class Lessons {
         this.id = id;
     }
 
-    public List<ItemLesson> getItemLessons() {
-        return itemLessons;
+    public List<ItemGrammar> getItemGrammars() {
+        return itemGrammars;
     }
 
-    public void setItemLessons(List<ItemLesson> itemLessons) {
-        this.itemLessons = itemLessons;
+    public void setItemGrammars(List<ItemGrammar> itemGrammars) {
+        this.itemGrammars = itemGrammars;
     }
 }
