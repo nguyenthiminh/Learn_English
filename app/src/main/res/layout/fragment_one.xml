@@ -1,10 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
- <ListView
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:id="@+id/lv_grammar"></ListView>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/v_tab"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone"/>
+    <ListView
+        android:id="@+id/lv_grammar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 
-</RelativeLayout>
+  <LinearLayout
+      android:id="@+id/ln_playmp3"
+
+      android:background="@color/colorPrimaryDark"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:orientation="horizontal"
+      android:layout_alignParentBottom="true">
+      <TableRow
+
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center">
+
+          <ImageView
+              android:src="@drawable/ic_music_back"
+              android:id="@+id/imv_back"
+              android:layout_width="60dp"
+              android:layout_height="60dp"
+              android:padding="10dp"></ImageView>
+
+          <ImageView
+              android:id="@+id/imv_play"
+              android:layout_width="60dp"
+              android:src="@drawable/ic_music_play"
+              android:layout_height="60dp"
+              android:padding="10dp"></ImageView>
+
+          <ImageView
+              android:src="@drawable/ic_music_next"
+              android:id="@+id/imv_next"
+              android:layout_width="60dp"
+              android:layout_height="60dp"
+              android:padding="10dp"></ImageView>
+
+      </TableRow>
+  </LinearLayout>
+
+</LinearLayout>

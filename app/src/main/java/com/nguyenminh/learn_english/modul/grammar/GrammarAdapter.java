@@ -55,8 +55,8 @@ public class GrammarAdapter extends BaseAdapter{
 
         Grammar grammar=grammars.get(position);
         tvid.setText(grammar.getId()+"");
-        tvlocaltitle.setText(grammar.getLocalTitle());
-        tventitle.setText(grammar.getEnTitle());
+        tventitle.setText(grammar.getLocalTitle());
+        tvlocaltitle.setText(grammar.getEnTitle());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

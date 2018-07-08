@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.R;
 
 import java.util.List;
@@ -15,16 +16,18 @@ import java.util.List;
  */
 
 public class LessonAdapter extends BaseAdapter {
+    List<Lesson> lessons;
+    private ISClick isClick;
 
-
-    public LessonAdapter(List<Lesson> lessons) {
+    public LessonAdapter(List<Lesson> lessons, ISClick isClick) {
         this.lessons = lessons;
+        this.isClick = isClick;
     }
 
-    List<Lesson>lessons;
+
     @Override
     public int getCount() {
-        if(lessons==null) {
+        if (lessons == null) {
             return 0;
         }
         return lessons.size();
@@ -41,20 +44,27 @@ public class LessonAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        if(view==null){
-            LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
-            view=inflater.inflate(R.layout.item_one,viewGroup,false);
+    public View getView(final int position, View view, ViewGroup viewGroup) {
+        if (view == null) {
+            LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+            view = inflater.inflate(R.layout.item_one, viewGroup, false);
         }
 
-        TextView tvid=(TextView)view.findViewById(R.id.tv_id);
-        TextView tvlocaltitle=(TextView)view.findViewById(R.id.tv_loacaltitle);
-        TextView tventitle=(TextView)view.findViewById(R.id.tv_entitle);
+        TextView tvid = (TextView) view.findViewById(R.id.tv_id);
+        TextView tvlocaltitle = (TextView) view.findViewById(R.id.tv_loacaltitle);
+        TextView tventitle = (TextView) view.findViewById(R.id.tv_entitle);
 
-        Lesson lesson=lessons.get(position);
-        tvid.setText(lesson.getId()+"");
+        Lesson lesson = lessons.get(position);
+        tvid.setText(lesson.getId() + "");
         tvlocaltitle.setText(lesson.getLocalTitle());
         tventitle.setText(lesson.getEnTitle());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isClick.isClick(position);
+            }
+        });
         return view;
     }
 }

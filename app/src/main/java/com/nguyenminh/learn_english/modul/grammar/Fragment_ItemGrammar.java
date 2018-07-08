@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,9 @@ public class Fragment_ItemGrammar extends Fragment {
             for (int i=0;i<itemGrammars.size();i++){
                 if(idc==itemGrammars.get(i).getId()){
                     tvItemGrammar.setText(Html.fromHtml(itemGrammars.get(i).getContent()));
+
+                    tvItemGrammar.setVerticalScrollBarEnabled(true);
+                    tvItemGrammar.setMovementMethod(new ScrollingMovementMethod());
                 }
         }
     }

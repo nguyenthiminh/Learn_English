@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.MainActivity;
 import com.nguyenminh.learn_english.R;
 import com.nguyenminh.learn_english.modul.lesson.Lesson;
@@ -32,7 +33,7 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
  * Created by Big Boss on 06/26/2018.
  */
 
-public class Fragment_BaiHoc extends Fragment {
+public class Fragment_BaiHoc extends Fragment implements ISClick{
     private List<Lesson> lessons;
     private LessonAdapter adapter;
     private ListView lv;
@@ -84,10 +85,15 @@ public class Fragment_BaiHoc extends Fragment {
 
 
             lv = (ListView) view.findViewById(R.id.lv_grammar);
-            adapter = new LessonAdapter(lessons);
+            adapter = new LessonAdapter(lessons,this);
             lv.setAdapter(adapter);
 
         }
+    }
+
+    @Override
+    public void isClick(int position) {
+        ((MainActivity)getActivity()).openItemLesson(lessons.get(position).getId(),lessons.get(position).getLocalTitle());
     }
 }
 

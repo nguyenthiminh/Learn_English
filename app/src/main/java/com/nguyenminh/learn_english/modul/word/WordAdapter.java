@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.R;
 import com.nguyenminh.learn_english.modul.phrase.Phrase;
 
@@ -16,10 +17,12 @@ import java.util.List;
  */
 
 public class WordAdapter extends BaseAdapter {
-    List<Word>words;
+    private ISClick isClick;
+    private List<Word>words;
 
-    public WordAdapter(List<Word> words) {
+    public WordAdapter(List<Word> words,ISClick isClick) {
         this.words = words;
+        this.isClick=isClick;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class WordAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
         if(view==null){
             LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
             view=inflater.inflate(R.layout.item_one,viewGroup,false);
@@ -55,6 +58,15 @@ public class WordAdapter extends BaseAdapter {
         tvid.setText(word.getId()+"");
         tvlocaltitle.setText(word.getLocalTitle());
         tventitle.setText(word.getEnTitle());
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isClick.isClick(position);
+            }
+        });
+
+
         return view;
     }
 }

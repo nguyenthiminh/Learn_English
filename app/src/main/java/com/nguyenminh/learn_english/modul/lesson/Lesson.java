@@ -1,10 +1,5 @@
 package com.nguyenminh.learn_english.modul.lesson;
 
-import com.nguyenminh.learn_english.modul.Lessons;
-import com.nguyenminh.learn_english.modul.Parsererror;
-
-import java.util.List;
-
 /**
  * Created by hieph on 7/1/2018.
  */

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.MainActivity;
 import com.nguyenminh.learn_english.R;
 import com.nguyenminh.learn_english.modul.phrase.Phrase;
@@ -30,7 +31,7 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
  * Created by Big Boss on 06/26/2018.
  */
 
-public class Fragment_CumTu extends Fragment {
+public class Fragment_CumTu extends Fragment implements ISClick{
     private List<Phrase> phrases;
     private PhraseAdapter adapter;
     private ListView lv;
@@ -82,9 +83,14 @@ public class Fragment_CumTu extends Fragment {
 
 
             lv = (ListView) view.findViewById(R.id.lv_grammar);
-            adapter = new PhraseAdapter(phrases);
+            adapter = new PhraseAdapter(phrases,this);
             lv.setAdapter(adapter);
 
         }
+    }
+
+    @Override
+    public void isClick(int position) {
+        ((MainActivity)getActivity()).openItemPhrase(phrases.get(position).getId(),phrases.get(position).getLocalTitle());
     }
 }
