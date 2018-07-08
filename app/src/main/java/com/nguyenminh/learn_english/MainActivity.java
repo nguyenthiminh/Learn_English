@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -27,9 +28,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nguyenminh.learn_english.dialog.CustomdialogShare;
 import com.nguyenminh.learn_english.modul.grammar.Fragment_ItemGrammar;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import android.support.v7.app.AlertDialog;
+
+import com.nguyenminh.learn_english.modul.video.Fragment_Video;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
 import org.json.JSONArray;
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseStorage firebaseStorage;
     private Dialog dialog;
     private StorageReference storageReference;
+    private CustomdialogShare cdd;
 
 
 
@@ -265,6 +270,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setTitle(Fragment_ItemGrammar.class.getName()+"");
         transaction.commit();
     }
+    public void openVideo(String item) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment_Video fragment = new Fragment_Video();
+        Bundle bundle = new Bundle();
+        bundle.putString("ITEM",item);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent, fragment,
+                Fragment_Video.class.getName());
+        transaction.addToBackStack(null);
+        actionBar.setTitle(Fragment_Video.class.getName()+"");
+        transaction.commit();
+    }
 //        });
 
 //        thread.start();
@@ -310,10 +328,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialog.show();
     }
     public void showDialogShare() {
-        dialog = new Dialog(MainActivity.this);
-        dialog.setTitle("Share with");
-        dialog.setContentView(R.layout.dialog_share);
-        dialog.show();
+       cdd = new CustomdialogShare(MainActivity.this);
+       cdd.show();
     }
 
 }

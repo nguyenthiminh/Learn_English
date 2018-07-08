@@ -58,7 +58,6 @@ public class Fragment_BaiHoc extends Fragment {
         inputStream.close();
         JSONObject jsonObject = xmlToJson.toJson();
         if (jsonObject != null) {
-
             Lesson lesson;
             try {
 
