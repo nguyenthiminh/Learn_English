@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nguyenminh.learn_english.dialog.CustomdialogShare;
 import com.nguyenminh.learn_english.modul.grammar.Fragment_ItemGrammar;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import android.support.v7.app.AlertDialog;
@@ -317,10 +319,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         alertDialog.show();
     }
     public void showDialogShare() {
-        dialog = new Dialog(MainActivity.this);
-        dialog.setTitle("Share with");
-        dialog.setContentView(R.layout.dialog_share);
-        dialog.show();
+        CustomdialogShare cdd=new CustomdialogShare(MainActivity.this);
+        cdd.show();
     }
 
     public void openVideo(int id) {
