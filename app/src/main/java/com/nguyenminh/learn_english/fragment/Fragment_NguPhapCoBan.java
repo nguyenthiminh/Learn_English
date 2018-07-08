@@ -91,6 +91,6 @@ public class Fragment_NguPhapCoBan extends Fragment implements ISClick {
 
     @Override
     public void isClick(int position) {
-        ((MainActivity)getActivity()).openItemGrammar(grammars.get(position).getId(),grammars.get(position).getLocalTitle());
+        ((MainActivity)getActivity()).openItemGrammar(grammars.get(position).getId());
     }
 }

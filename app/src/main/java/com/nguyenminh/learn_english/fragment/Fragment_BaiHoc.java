@@ -59,7 +59,6 @@ public class Fragment_BaiHoc extends Fragment implements ISClick{
         inputStream.close();
         JSONObject jsonObject = xmlToJson.toJson();
         if (jsonObject != null) {
-
             Lesson lesson;
             try {
 

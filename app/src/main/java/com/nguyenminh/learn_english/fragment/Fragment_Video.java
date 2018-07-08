@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.MainActivity;
 import com.nguyenminh.learn_english.R;
+import com.nguyenminh.learn_english.modul.video.ITemVideo;
 import com.nguyenminh.learn_english.modul.video.Video;
 import com.nguyenminh.learn_english.modul.video.VideoAdapter;
 import com.nguyenminh.learn_english.modul.word.Word;
@@ -32,7 +34,7 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
  * Created by Big Boss on 06/26/2018.
  */
 
-public class Fragment_Video extends Fragment {
+public class Fragment_Video extends Fragment implements ISClick {
     private List<Video> videos;
     private VideoAdapter adapter;
     private ListView lv;
@@ -84,9 +86,14 @@ public class Fragment_Video extends Fragment {
 
 
             lv = (ListView) view.findViewById(R.id.lv_grammar);
-            adapter = new VideoAdapter(videos);
+            adapter = new VideoAdapter(videos,this);
             lv.setAdapter(adapter);
 
         }
+    }
+
+    @Override
+    public void isClick(int position) {
+        ((MainActivity)getActivity()).openVideo(videos.get(position).getId());
     }
 }

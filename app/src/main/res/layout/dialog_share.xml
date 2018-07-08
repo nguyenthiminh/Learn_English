@@ -10,11 +10,11 @@
         <ImageView
             android:id="@+id/imv_bluetooth"
             android:layout_width="@dimen/dialog_height"
-            android:src="@drawable/bl"
+            android:src="@drawable/abcdef"
             android:layout_height="@dimen/dialog_height" />
         <TextView
-            android:id="@+id/tv_messaging"
-            android:text="BlueTooth"
+            android:id="@+id/tv_bltooth"
+            android:text="Facebook"
             android:textSize="20dp"
             android:padding="15dp"
             android:textColor="@color/colorPrimary"
@@ -31,7 +31,7 @@
             android:src="@drawable/thu"
             android:layout_height="@dimen/dialog_height" />
         <TextView
-            android:id="@+id/tv_bltooth"
+            android:id="@+id/tv_messaging"
             android:text="Messaging"
             android:textSize="20dp"
             android:padding="15dp"
@@ -48,15 +48,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/tv_ok"
+            android:id="@+id/btn_ok"
             android:hint="jusceone"
             android:textSize="18sp"
+            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/tv_"
+            android:id="@+id/btn_allways"
             android:hint="Allways"
             android:textSize="18sp"
+            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

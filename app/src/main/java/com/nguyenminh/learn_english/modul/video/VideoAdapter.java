@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.R;
 import com.nguyenminh.learn_english.modul.phrase.Phrase;
 
@@ -17,9 +18,11 @@ import java.util.List;
 
 public class VideoAdapter extends BaseAdapter {
     List<Video>videos;
+    private ISClick inter;
 
-    public VideoAdapter(List<Video> phrases) {
+    public VideoAdapter(List<Video> phrases,ISClick inter) {
         this.videos = phrases;
+        this.inter = inter;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class VideoAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
         if(view==null){
             LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
             view=inflater.inflate(R.layout.item_one,viewGroup,false);
@@ -55,6 +58,14 @@ public class VideoAdapter extends BaseAdapter {
         tvid.setText(video.getId()+"");
         tvlocaltitle.setText(video.getLocalTitle());
         tventitle.setText(video.getEnTitle());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inter.isClick(position);
+            }
+        });
         return view;
     }
+
+
 }
