@@ -91,6 +91,6 @@ public class Fragment_CumTu extends Fragment implements ISClick{
 
     @Override
     public void isClick(int position) {
-//        ((MainActivity)getActivity()).openItemPhrase(phrases.get(position).getId(),phrases.get(position).getLocalTitle());
+        ((MainActivity)getActivity()).openItemPhrase(phrases.get(position).getId(),phrases.get(position).getLocalTitle());
     }
 }
