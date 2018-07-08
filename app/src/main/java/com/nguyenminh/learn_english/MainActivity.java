@@ -32,6 +32,11 @@ import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import android.support.v7.app.AlertDialog;
 
 import com.nguyenminh.learn_english.modul.video.Fragment_Video;
+
+import com.nguyenminh.learn_english.modul.lesson.Fragment_ItemLesson;
+import com.nguyenminh.learn_english.modul.phrase.Fragment_ItemPhrase;
+import com.nguyenminh.learn_english.modul.video.Fragment_Video;
+import com.nguyenminh.learn_english.modul.word.Fragment_ItemWord;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
 import org.json.JSONArray;
@@ -329,4 +334,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    public void openItemLesson(int id, String localTitle) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment_ItemLesson fragment = new Fragment_ItemLesson();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", id);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent, fragment,
+                Fragment_ItemLesson.class.getName());
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+    public void openItemWord(int id, String localTitle) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment_ItemWord fragment = new Fragment_ItemWord();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", id);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent, fragment,
+                Fragment_ItemWord.class.getName());
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
+    public void openItemPhrase(int id, String localTitle) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment_ItemPhrase fragment = new Fragment_ItemPhrase();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID", id);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent, fragment,
+                Fragment_ItemPhrase.class.getName());
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
+
 }
