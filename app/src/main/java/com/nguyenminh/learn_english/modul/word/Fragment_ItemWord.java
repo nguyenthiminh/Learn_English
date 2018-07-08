@@ -74,8 +74,9 @@ public class Fragment_ItemWord extends Fragment{
                 for (int i = 0; i < le; i++) {
                     JSONObject o = (JSONObject) jsonArray.get(i);
                     int id = o.getInt("id");
+                    JSONArray o1=o.getJSONArray("item");
                     if(id==idc){
-                        JSONArray o1=o.getJSONArray("item");
+
                         for(int j=0;j<o1.length();j++){
                             JSONObject o11=(JSONObject)o1.get(j);
                             String enText = o11.getString("en_text");

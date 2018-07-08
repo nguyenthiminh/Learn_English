@@ -1,5 +1,7 @@
 package com.nguyenminh.learn_english.modul.video;
 
+import android.graphics.Color;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import com.nguyenminh.learn_english.ISClick;
 import com.nguyenminh.learn_english.R;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -17,9 +20,11 @@ import java.util.List;
 
 public class VidAdapter extends BaseAdapter {
     private List<ITemVideo> itvideos;;
+    private ISClick intern;
 
-    public VidAdapter(List<ITemVideo> itvideos) {
+    public VidAdapter(List<ITemVideo> itvideos,ISClick intern) {
         this.itvideos = itvideos;
+        this.intern = intern;
 
     }
 
@@ -54,10 +59,19 @@ public class VidAdapter extends BaseAdapter {
 
         ITemVideo ivideo = itvideos.get(position);
         tvid.setText(ivideo.getItem() + "");
+        tvid.setTextSize(14);
         tvlocaltitle.setText(ivideo.getText());
-        tventitle.setText(ivideo.getContent());
-        
-
+        tvlocaltitle.setTextSize(14);
+        tventitle.setText(ivideo.getLink());
+        tventitle.setTextColor(Color.BLUE);
+        tventitle.setTextSize(12);
+        tventitle.setInputType(InputType.TYPE_TEXT_VARIATION_FILTER);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intern.isClick(position);
+            }
+        });
         return view;
     }
 }

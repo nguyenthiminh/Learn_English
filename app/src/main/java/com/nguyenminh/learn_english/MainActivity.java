@@ -30,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 import com.nguyenminh.learn_english.modul.grammar.Fragment_ItemGrammar;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
 import android.support.v7.app.AlertDialog;
+
+import com.nguyenminh.learn_english.modul.video.Fragment_Video;
 import com.nguyenminh.learn_english.tab_main.Menu_Tab;
 
 import org.json.JSONArray;
@@ -316,4 +318,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dialog.show();
     }
 
+    public void openVideo(int id) {
+        Fragment_Video fragment = new Fragment_Video();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putInt("ID",id);
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.mainContent,fragment,Fragment_Video.class.getName());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
