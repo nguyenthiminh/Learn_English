@@ -92,6 +92,6 @@ public class Fragment_TuCoBan extends Fragment implements ISClick {
 
     @Override
     public void isClick(int position) {
-//        ((MainActivity)getActivity()).openItemWord(words.get(position).getId(),words.get(position).getLocalTitle());
+        ((MainActivity)getActivity()).openItemWord(words.get(position).getId(),words.get(position).getLocalTitle());
     }
 }

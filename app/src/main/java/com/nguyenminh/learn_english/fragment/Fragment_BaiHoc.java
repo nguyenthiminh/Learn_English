@@ -92,7 +92,7 @@ public class Fragment_BaiHoc extends Fragment implements ISClick{
 
     @Override
     public void isClick(int position) {
-//        ((MainActivity)getActivity()).openItemLesson(lessons.get(position).getId(),lessons.get(position).getLocalTitle());
+        ((MainActivity)getActivity()).openItemLesson(lessons.get(position).getId(),lessons.get(position).getLocalTitle());
     }
 }
 
