@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
@@ -31,7 +32,9 @@ import com.google.firebase.storage.StorageReference;
 import com.nguyenminh.learn_english.dialog.CustomdialogShare;
 import com.nguyenminh.learn_english.modul.grammar.Fragment_ItemGrammar;
 import com.nguyenminh.learn_english.modul.grammar.Grammar;
+
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import com.nguyenminh.learn_english.modul.video.Fragment_Video;
 
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private StorageReference storageReference;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +90,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                if (i == 0) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+                if (i == 1) {
+                    onBackPressed();
+                    i = 0;
+                    actionBar.setTitle("LearnEnglish");
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    Drawable drawable = getResources().getDrawable(R.drawable.ic_menu);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setHomeAsUpIndicator(drawable);
+
+                }
+
             }
         });
 //        try {
@@ -105,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.menu_actionbar, menu);
         return true;
     }
+
     public void openMenu_Main() {
         Menu_Tab music_tap = new Menu_Tab();
         FragmentManager m = getSupportFragmentManager();
@@ -137,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             String entitle = o.getString("en_title");
 //                        tvText.setText(Html.fromHtml(
 //                                title));
-                            gram= new Grammar(id, localtitle,entitle);
+                            gram = new Grammar(id, localtitle, entitle);
 
                             data.add(gram);
 
@@ -186,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
-            case R .id.share:
+            case R.id.share:
                 showDialogShare();
 
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -260,25 +276,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                }
     }
 
-    public void openItemGrammar(int id) {
+    private int i = 0;
+
+    public void openItemGrammar(int id, String localTitle) {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment_ItemGrammar fragment = new Fragment_ItemGrammar();
         Bundle bundle = new Bundle();
         bundle.putInt("ID", id);
+        bundle.putString("TITLE", localTitle);
         fragment.setArguments(bundle);
         transaction.replace(R.id.mainContent, fragment,
                 Fragment_ItemGrammar.class.getName());
         transaction.addToBackStack(null);
-        actionBar.setTitle(Fragment_ItemGrammar.class.getName()+"");
+        actionBar.setTitle(id + "." + localTitle + "");
+        backMenu();
         transaction.commit();
+
+    }
+
+    public void backMenu() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+        i = i + 1;
     }
 //        });
 
-//        thread.start();
+    //        thread.start();
 //    }
-    private void showAlterdialogSetting(){
+    private void showAlterdialogSetting() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("abcdef");
         builder.setMessage("ban co muon...");
@@ -298,7 +327,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-    private void showAlterdialogInfor(){
+
+    private void showAlterdialogInfor() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("abcdef");
         builder.setMessage("ban co muon...");
@@ -318,45 +348,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
     public void showDialogShare() {
-        CustomdialogShare cdd=new CustomdialogShare(MainActivity.this);
+        CustomdialogShare cdd = new CustomdialogShare(MainActivity.this);
         cdd.show();
     }
 
-    public void openVideo(int id) {
+    public void openVideo(int id,String localTitle) {
         Fragment_Video fragment = new Fragment_Video();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt("ID",id);
+        bundle.putInt("ID", id);
+        bundle.putString("LOCALTITLE",localTitle);
         fragment.setArguments(bundle);
-        transaction.replace(R.id.mainContent,fragment,Fragment_Video.class.getName());
+        transaction.replace(R.id.mainContent, fragment, Fragment_Video.class.getName());
         transaction.addToBackStack(null);
+        actionBar.setTitle(id + "." + localTitle + "");
+        backMenu();
         transaction.commit();
     }
+
     public void openItemLesson(int id, String localTitle) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment_ItemLesson fragment = new Fragment_ItemLesson();
         Bundle bundle = new Bundle();
         bundle.putInt("ID", id);
+        bundle.putString("LOCALTITLE",localTitle);
         fragment.setArguments(bundle);
         transaction.replace(R.id.mainContent, fragment,
                 Fragment_ItemLesson.class.getName());
         transaction.addToBackStack(null);
-
+        actionBar.setTitle(id + "." + localTitle + "");
+        backMenu();
         transaction.commit();
     }
+
     public void openItemWord(int id, String localTitle) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment_ItemWord fragment = new Fragment_ItemWord();
         Bundle bundle = new Bundle();
         bundle.putInt("ID", id);
+        bundle.putString("LOCALTITLE",localTitle);
         fragment.setArguments(bundle);
         transaction.replace(R.id.mainContent, fragment,
                 Fragment_ItemWord.class.getName());
         transaction.addToBackStack(null);
+        actionBar.setTitle(id + "." + localTitle + "");
+        backMenu();
 
         transaction.commit();
     }
@@ -367,10 +408,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment_ItemPhrase fragment = new Fragment_ItemPhrase();
         Bundle bundle = new Bundle();
         bundle.putInt("ID", id);
+        bundle.putString("LOCALTITLE",localTitle);
         fragment.setArguments(bundle);
         transaction.replace(R.id.mainContent, fragment,
                 Fragment_ItemPhrase.class.getName());
         transaction.addToBackStack(null);
+        actionBar.setTitle(id + "." + localTitle + "");
+        backMenu();
 
         transaction.commit();
     }

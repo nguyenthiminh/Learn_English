@@ -46,6 +46,7 @@ public class Fragment_ItemWord extends Fragment{
         v.setVisibility(View.VISIBLE);
         Bundle bundle = getArguments();
         int id = bundle.getInt("ID");
+        String localtitle=bundle.getString("LOCALTITLE");
         try {
             init(id);
         } catch (IOException e) {
