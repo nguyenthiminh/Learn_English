@@ -100,6 +100,6 @@ public class Fragment_Video extends Fragment implements ISClick {
 
     @Override
     public void isClick(int position) {
-        ((MainActivity)getActivity()).openVideo(videos.get(position).getId());
+        ((MainActivity)getActivity()).openVideo(videos.get(position).getId(),videos.get(position).getLocalTitle());
     }
 }

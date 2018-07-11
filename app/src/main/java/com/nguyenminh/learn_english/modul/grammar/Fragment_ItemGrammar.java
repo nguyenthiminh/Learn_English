@@ -41,6 +41,7 @@ public class Fragment_ItemGrammar extends Fragment {
         tvItemGrammar=(TextView)view.findViewById(R.id.tv_itemgrammar);
         Bundle bundle =getArguments();
         int id=bundle.getInt("ID");
+        String title=bundle.getString("TITLE");
         try {
             init(id);
         } catch (IOException e) {
