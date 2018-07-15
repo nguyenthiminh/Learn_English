@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english.modul.phrase;
 
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -95,6 +96,13 @@ public class Fragment_ItemPhrase extends Fragment {
                             phrases = new ItemPhrases(id, itemPhrases);
                             phrasess.add(phrases);
 
+//                            AssetFileDescriptor descriptor =getContext().getAssets().openFd("");
+//                            long start = descriptor.getStartOffset();
+//                            long end = descriptor.getLength();
+//                            MediaPlayer mediaPlayer=new MediaPlayer();
+//                            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), start, end);
+//                            mediaPlayer.prepare();
+//                            mediaPlayer.start();
                             // Id của file mp3.
 //                            int mp3Id =getRawResIdByName("lesson_"+id);
 
