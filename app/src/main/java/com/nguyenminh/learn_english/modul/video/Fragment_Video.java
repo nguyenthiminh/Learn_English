@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class Fragment_Video extends Fragment implements ISClick{
     private ListView lvvideo;
     private VidAdapter vidAdapter;
     private View v;
+    private String url="";
 
     @Nullable
     @Override
@@ -94,11 +96,10 @@ public class Fragment_Video extends Fragment implements ISClick{
 
         }
 
-        vidAdapter = new VidAdapter(itvideos,this);
+        vidAdapter = new VidAdapter(itvideos,this,getContext());
         lvvideo.setAdapter(vidAdapter);
 
     }
-
     @Override
     public void isClick(int position) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(itvideos.get(position).getLink()));

@@ -55,6 +55,7 @@ public class Fragment_ItemLesson extends Fragment {
 
         Bundle bundle = getArguments();
         int id = bundle.getInt("ID");
+        String localtitle=bundle.getString("LOCALTITLE");
         try {
             init(id);
         } catch (IOException e) {

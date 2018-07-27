@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.nguyenminh.learn_english.ISClick;
@@ -18,6 +19,7 @@ import com.nguyenminh.learn_english.modul.video.Video;
 import com.nguyenminh.learn_english.modul.video.VideoAdapter;
 import com.nguyenminh.learn_english.modul.word.Word;
 import com.nguyenminh.learn_english.modul.word.WordAdapter;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +40,14 @@ public class Fragment_Video extends Fragment implements ISClick {
     private List<Video> videos;
     private VideoAdapter adapter;
     private ListView lv;
+    private ImageView imv;
+    private String url = "http://img.youtube.com/vi/" + "/0.jpg";
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        View view = inflater.inflate(R.layout.fragment_one, container, false);;
         try {
             init(view);
         } catch (IOException e) {
@@ -95,6 +100,6 @@ public class Fragment_Video extends Fragment implements ISClick {
 
     @Override
     public void isClick(int position) {
-        ((MainActivity)getActivity()).openVideo(videos.get(position).getId());
+        ((MainActivity)getActivity()).openVideo(videos.get(position).getId(),videos.get(position).getLocalTitle());
     }
 }

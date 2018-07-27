@@ -50,6 +50,7 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.github.smart-fun:XmlToJson:1.4.4'
     implementation 'me.relex:circleindicator:1.2.2@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

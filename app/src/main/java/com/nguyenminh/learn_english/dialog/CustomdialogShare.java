@@ -3,6 +3,7 @@ package com.nguyenminh.learn_english.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -53,7 +54,13 @@ public class CustomdialogShare extends Dialog implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.tv_bltooth :
                 btnjusceone.setEnabled(true);
+                btnjusceone.setText("jusceone");
+                btnjusceone.setTextSize(12);
+                btnjusceone.setTextColor(Color.BLUE);
                 btnallways.setEnabled(true);
+                btnallways.setText("allways");
+                btnallways.setTextColor(Color.BLUE);
+                btnallways.setTextSize(12);
                 if (btnjusceone.isEnabled() && btnallways.isEnabled()) {
                     btnjusceone.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -69,12 +76,17 @@ public class CustomdialogShare extends Dialog implements View.OnClickListener{
                             c.startActivity(browserIntent);
                         }
                     });
-
                 }
                 break;
             case R.id.tv_messaging :
                 btnjusceone.setEnabled(true);
+                btnjusceone.setText("jusceone");
+                btnjusceone.setTextSize(12);
+                btnjusceone.setTextColor(Color.BLUE);
                 btnallways.setEnabled(true);
+                btnallways.setText("allways");
+                btnallways.setTextColor(Color.BLUE);
+                btnallways.setTextSize(12);
 
                 break;
             default:

@@ -1,5 +1,6 @@
 package com.nguyenminh.learn_english.modul.phrase;
 
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -35,7 +36,6 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
  */
 
 public class Fragment_ItemPhrase extends Fragment {
-    private LinearLayout ln;
     private ItemPhraseAdapter adapter;
     private List<ItemPhrase> itemPhrases;
     private List<ItemPhrases> phrasess;
@@ -43,6 +43,7 @@ public class Fragment_ItemPhrase extends Fragment {
     private ListView lv;
     private ImageView imvPlay;
     private MediaPlayer mediaPlayer;
+    private LinearLayout ln;
 
 
     @Nullable
@@ -58,6 +59,7 @@ public class Fragment_ItemPhrase extends Fragment {
 
         Bundle bundle = getArguments();
         int id = bundle.getInt("ID");
+        String localtitle=bundle.getString("LOCALTITLE");
         try {
             init(id);
         } catch (IOException e) {
@@ -112,6 +114,15 @@ public class Fragment_ItemPhrase extends Fragment {
 
 
 //                 Id của file mp3.
+//                            AssetFileDescriptor descriptor =getContext().getAssets().openFd("");
+//                            long start = descriptor.getStartOffset();
+//                            long end = descriptor.getLength();
+//                            MediaPlayer mediaPlayer=new MediaPlayer();
+//                            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), start, end);
+//                            mediaPlayer.prepare();
+//                            mediaPlayer.start();
+                            // Id của file mp3.
+//                            int mp3Id =getRawResIdByName("lesson_"+id);
 
 //                 Tạo đối tượng MediaPlayer.
 
