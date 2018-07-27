@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:id="@+id/timepicker"
+        android:timePickerMode="clock"
+        android:layout_height="wrap_content"></TimePicker>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ hẹn"
+        android:layout_below="@+id/timepicker"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/tv_hour"
+        android:textColor="#000000"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_centerHorizontal="true"/>
+    <Button
+        android:layout_marginLeft="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_datgio"
+        android:text="Đặt giờ"
+        android:background="#3F51B5"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/timepicker"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_dung"
+        android:layout_marginRight="25dp"
+        android:text="Dừng"
+        android:background="#3F51B5"
+        android:textColor="#ffffff"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/timepicker"/>
+
+</RelativeLayout>

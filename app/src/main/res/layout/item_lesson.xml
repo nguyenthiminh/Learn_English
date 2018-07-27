@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:weightSum="6"
+    android:weightSum="8"
     android:layout_height="65dp">
     <TextView
         android:id="@+id/tv_id"
@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:layout_height="65dp"
         android:orientation="vertical"
         android:weightSum="3">
@@ -55,11 +55,20 @@
 
     </LinearLayout>
     <ImageView
+        android:id="@+id/imv_ok"
         android:padding="25dp"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:visibility="gone"
         android:src="@drawable/ic_checkmark_books"/>
+    <TextView
+        android:id="@+id/tv_timemp3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="135"
+        android:textSize="8sp"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -35,6 +35,7 @@ import fr.arnaudguyon.xmltojsonlib.XmlToJson;
  */
 
 public class Fragment_ItemPhrase extends Fragment {
+    private LinearLayout ln;
     private ItemPhraseAdapter adapter;
     private List<ItemPhrase> itemPhrases;
     private List<ItemPhrases> phrasess;
@@ -49,8 +50,12 @@ public class Fragment_ItemPhrase extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_one, container, false);
         lv = (ListView) view.findViewById(R.id.lv_grammar);
-        vTab=(View)view.findViewById(R.id.v_tab);
+        vTab = (View) view.findViewById(R.id.v_tab);
         vTab.setVisibility(View.VISIBLE);
+        ln = (LinearLayout) view.findViewById(R.id.ln_playmp3);
+        ln.setVisibility(View.VISIBLE);
+        imvPlay = (ImageView) view.findViewById(R.id.imv_play);
+
         Bundle bundle = getArguments();
         int id = bundle.getInt("ID");
         try {
@@ -94,29 +99,77 @@ public class Fragment_ItemPhrase extends Fragment {
                             phrases = new ItemPhrases(id, itemPhrases);
                             phrasess.add(phrases);
 
-                            // Id của file mp3.
-//                            int mp3Id =getRawResIdByName("lesson_"+id);
 
-                            // Tạo đối tượng MediaPlayer.
-//                            mediaPlayer=   MediaPlayer.create(getContext(), mp3Id);
-//                            imvPlay.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//
-//                                    imvPlay.setImageResource(R.drawable.ic_music_pause);
-//                                    doPlay();
-//                                }
-//                            });
 
                         }
                     }
                 }
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+
+//                 Id của file mp3.
+
+//                 Tạo đối tượng MediaPlayer.
+
+
+                imvPlay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (int i = 0; i < itemPhrases.size(); i++) {
+                            int mp3Id = getRawResIdByName(itemPhrases.get(i).getMp3_normal() + "");
+                            imvPlay.setImageResource(R.drawable.ic_music_pause);
+                            mediaPlayer = MediaPlayer.create(getContext(), mp3Id);
+
+                            if (mediaPlayer.isPlaying()) {
+                                imvPlay.setImageResource(R.drawable.ic_music_play);
+                                pauseMusic();
+                            } else {
+                                imvPlay.setImageResource(R.drawable.ic_music_pause);
+                                startMusic();
+                            }
+                        }
+                    }
+                });
             adapter = new ItemPhraseAdapter(itemPhrases);
             lv.setAdapter(adapter);
 
         }
     }
+
+    public int getRawResIdByName(String resName) {
+        String pkgName = getContext().getPackageName();
+        // Return 0 if not found.
+        // Trả về 0 nếu không tìm thấy.
+        int resID = getResources().getIdentifier(resName, "raw", pkgName);
+        return resID;
+    }
+
+
+    private void stopMusic() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = new MediaPlayer();
+        }
+    }
+
+    /**
+     * Hàm bắt đầu chơi nhạc lại
+     */
+    private void startMusic() {
+        mediaPlayer.start();
+
+    }
+
+    /**
+     * Hàm tạm dừng chơi nhạc
+     */
+    private void pauseMusic() {
+        mediaPlayer.pause();
+    }
+
 }
