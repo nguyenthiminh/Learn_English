@@ -49,10 +49,9 @@ public class Fragment_ItemLesson extends Fragment {
         ln = (LinearLayout) view.findViewById(R.id.ln_playmp3);
         lv = (ListView) view.findViewById(R.id.lv_grammar);
         ln.setVisibility(View.VISIBLE);
-        vTab=(View)view.findViewById(R.id.v_tab);
+        vTab = (View) view.findViewById(R.id.v_tab);
         vTab.setVisibility(View.VISIBLE);
-        imvPlay=(ImageView)view.findViewById(R.id.imv_play);
-
+        imvPlay = (ImageView) view.findViewById(R.id.imv_play);
 
         Bundle bundle = getArguments();
         int id = bundle.getInt("ID");
@@ -85,33 +84,19 @@ public class Fragment_ItemLesson extends Fragment {
                 for (int i = 0; i < le; i++) {
                     JSONObject o = (JSONObject) jsonArray.get(i);
                     int id = o.getInt("id");
-                    if(id==idc){
-                        JSONArray o1=o.getJSONArray("item");
-                        for(int j=0;j<o1.length();j++){
-                            JSONObject o11=(JSONObject)o1.get(j);
+                    if (id == idc) {
+                        JSONArray o1 = o.getJSONArray("item");
+                        for (int j = 0; j < o1.length(); j++) {
+                            JSONObject o11 = (JSONObject) o1.get(j);
                             String person = o11.getString("person");
                             String enText = o11.getString("en_text");
                             String localText = o11.getString("local_text");
                             String mp3Normal = o11.getString("mp3_normal");
                             String mp3Slow = o11.getString("mp3_slow");
-                            itemLesson = new ItemLesson(j+1, person, enText, localText, mp3Normal, mp3Slow);
+                            itemLesson = new ItemLesson(j + 1, person, enText, localText, mp3Normal, mp3Slow);
                             itemLessons.add(itemLesson);
                             lessons = new ItemLessons(id, itemLessons);
                             lessonss.add(lessons);
-
-                            // Id của file mp3.
-                            int mp3Id =getRawResIdByName("lesson_"+id);
-
-                            // Tạo đối tượng MediaPlayer.
-//                            mediaPlayer=   MediaPlayer.create(getContext(), mp3Id);
-//                            imvPlay.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//
-//                                    imvPlay.setImageResource(R.drawable.ic_music_pause);
-//                                    doPlay();
-//                                }
-//                            });
 
                         }
                     }
@@ -125,16 +110,6 @@ public class Fragment_ItemLesson extends Fragment {
         }
     }
 
-    public int getRawResIdByName(String resName)  {
-        String pkgName =getContext().getPackageName();
-        // Return 0 if not found.
-        // Trả về 0 nếu không tìm thấy.
-        int resID =getResources().getIdentifier(resName, "raw", pkgName);
-        return resID;
-    }
 
-    public void doPlay(){
-        mediaPlayer.start();
-    }
 
 }

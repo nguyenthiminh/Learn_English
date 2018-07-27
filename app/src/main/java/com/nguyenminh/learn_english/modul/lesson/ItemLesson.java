@@ -16,8 +16,17 @@ public class ItemLesson {
     private String local_text;
     private String mp3_normal;
     private String mp3_slow;
+    private String ms;
 
-    public ItemLesson(int stt,String person, String en_text, String local_text, String mp3_normal, String mp3_slow) {
+    public String getMs() {
+        return ms;
+    }
+
+    public void setMs(String ms) {
+        this.ms = ms;
+    }
+
+    public ItemLesson(int stt, String person, String en_text, String local_text, String mp3_normal, String mp3_slow) {
         this.stt=stt;
         this.person = person;
         this.en_text = en_text;

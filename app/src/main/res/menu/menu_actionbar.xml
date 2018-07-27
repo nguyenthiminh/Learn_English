@@ -2,19 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/homepage"
+        android:id="@+id/clock"
         android:orderInCategory="100"
+        android:title="HOME"
+        android:icon="@drawable/ic_alarm_clock"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/like"
+        android:orderInCategory="200"
         android:title="HOME"
         android:icon="@drawable/abc_btn_rating_star_on_mtrl_alpha"
         app:showAsAction="always"
         />
 
     <item
-        android:id="@+id/homepage1"
-        android:orderInCategory="200"
+        android:id="@+id/store"
+        android:orderInCategory="300"
         android:title="HOME"
         android:icon="@drawable/fab_google_play"
         app:showAsAction="always"
     />
+
 
 </menu>

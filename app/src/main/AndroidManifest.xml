@@ -21,6 +21,9 @@
             </intent-filter>
 
         </activity>
+        <receiver android:name=".alarmclock.AlarmReceiver"/>
+        <service android:name=".alarmclock.Music"
+            android:enabled="true"/>
     </application>
 
 </manifest>
