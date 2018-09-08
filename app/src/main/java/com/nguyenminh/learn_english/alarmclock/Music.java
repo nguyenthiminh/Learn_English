@@ -75,20 +75,15 @@ public class Music extends Service {
             NotificationManager mNotificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder.setAutoCancel(true);
-//            mBuilder.build().flags |= Notification.FLAG_AUTO_CANCEL;
+            mBuilder.build().flags |= Notification.FLAG_AUTO_CANCEL;
 //             id allows you to update the notification later on.
             mNotificationManager.notify(0, mBuilder.build());
-//            mBuilder.setAutoCancel(true);
-//            mBuilder.getNotification().flags |= Notification.FLAG_AUTO_CANCEL;
-
-
-//            mediaPlayer.setLooping(true);
+            mBuilder.getNotification().flags |= Notification.FLAG_AUTO_CANCEL;
             id = 0;
         } else if (id == 0) {
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-
         return START_NOT_STICKY;
     }
 }
